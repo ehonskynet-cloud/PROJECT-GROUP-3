@@ -1,0 +1,850 @@
+{
+  "_type": "Project",
+  "_id": "7709f0ab-6e22-42c2-a9da-b20706ccc50c",
+  "name": "Restaurant - Diagrammes de Séquence",
+  "ownedElements": [
+    {
+      "_type": "UMLModel",
+      "_id": "9cf67dfc-9e69-48ee-8f47-3cdf0bb37ddf",
+      "name": "Modele Séquences Restaurant",
+      "ownedElements": [
+        {
+          "_type": "UMLSequenceDiagram",
+          "_id": "5389920a-0d78-4c52-ac43-67bf53c6a550",
+          "name": "Séquence 1 - Commande Sur Place",
+          "ownedElements": [
+            {
+              "_type": "UMLLifeline",
+              "_id": "3c81a4de-8da7-4353-b275-5b92c5ff7a2d",
+              "name": "Client",
+              "x": 100
+            },
+            {
+              "_type": "UMLLifeline",
+              "_id": "d359f330-ed03-45b7-bcf6-56a0d63363b6",
+              "name": "Serveur (Interface)",
+              "x": 300
+            },
+            {
+              "_type": "UMLLifeline",
+              "_id": "03820e27-4429-43c9-a3bb-078a88690e33",
+              "name": "Django (Backend)",
+              "x": 550
+            },
+            {
+              "_type": "UMLLifeline",
+              "_id": "58863fc6-039a-44da-9619-298d088f2ee1",
+              "name": "Base de Données MySQL",
+              "x": 800
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "40417d0c-0c55-450a-ad14-be6242538aba",
+              "name": "1: Consulter le menu",
+              "source": {
+                "$ref": "3c81a4de-8da7-4353-b275-5b92c5ff7a2d"
+              },
+              "target": {
+                "$ref": "d359f330-ed03-45b7-bcf6-56a0d63363b6"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "1a40759c-abae-4c43-b006-cd55bf8e4ede",
+              "name": "2: GET /menu",
+              "source": {
+                "$ref": "d359f330-ed03-45b7-bcf6-56a0d63363b6"
+              },
+              "target": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "5adbf19e-bc59-4ada-b668-7fe4d0f6bb61",
+              "name": "3: SELECT * FROM Produit",
+              "source": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "target": {
+                "$ref": "58863fc6-039a-44da-9619-298d088f2ee1"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "fb6f4ec0-e5b8-4391-be0f-cddd865c1a33",
+              "name": "4: Liste des produits",
+              "source": {
+                "$ref": "58863fc6-039a-44da-9619-298d088f2ee1"
+              },
+              "target": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "4d985d89-b380-4848-b1bc-6e5d72954516",
+              "name": "5: Renvoyer catalogue",
+              "source": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "target": {
+                "$ref": "d359f330-ed03-45b7-bcf6-56a0d63363b6"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "b48d25f5-ff85-46d1-ab8a-e101cd5ebc5d",
+              "name": "6: Afficher le menu",
+              "source": {
+                "$ref": "d359f330-ed03-45b7-bcf6-56a0d63363b6"
+              },
+              "target": {
+                "$ref": "3c81a4de-8da7-4353-b275-5b92c5ff7a2d"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "36787219-af30-4716-a5eb-27ef68c77a31",
+              "name": "7: Choisir plats + quantités",
+              "source": {
+                "$ref": "3c81a4de-8da7-4353-b275-5b92c5ff7a2d"
+              },
+              "target": {
+                "$ref": "d359f330-ed03-45b7-bcf6-56a0d63363b6"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "f2200d14-83f8-43dc-9986-b8b1bf7de9c0",
+              "name": "8: POST /commande {id_client, produits}",
+              "source": {
+                "$ref": "d359f330-ed03-45b7-bcf6-56a0d63363b6"
+              },
+              "target": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "eb685303-6944-4a37-b09c-4701c3e1b6e8",
+              "name": "9: INSERT INTO Commande",
+              "source": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "target": {
+                "$ref": "58863fc6-039a-44da-9619-298d088f2ee1"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "06002b3a-487a-4b87-add1-4ea45a98acdb",
+              "name": "10: INSERT INTO Ligne_Commande",
+              "source": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "target": {
+                "$ref": "58863fc6-039a-44da-9619-298d088f2ee1"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "ffd5107e-0f58-4946-a706-0ae5b8e04873",
+              "name": "11: UPDATE Stock (décrémenter)",
+              "source": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "target": {
+                "$ref": "58863fc6-039a-44da-9619-298d088f2ee1"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "b09ffa2e-3fef-4926-ac22-f020488db6e0",
+              "name": "12: INSERT INTO Variation_Stock",
+              "source": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "target": {
+                "$ref": "58863fc6-039a-44da-9619-298d088f2ee1"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "f72697e2-d8c2-46c3-8fb5-0a849837f658",
+              "name": "13: Confirmation insertion",
+              "source": {
+                "$ref": "58863fc6-039a-44da-9619-298d088f2ee1"
+              },
+              "target": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "434016ed-d176-4a2f-9b05-d38d7af1763a",
+              "name": "14: Calculer Montant_Total",
+              "source": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "target": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "2d804fd9-fa6a-4eee-a498-fc61b932b3d2",
+              "name": "15: INSERT INTO Facture",
+              "source": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "target": {
+                "$ref": "58863fc6-039a-44da-9619-298d088f2ee1"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "b008774f-2dcc-4754-b96f-65ce53224a83",
+              "name": "16: id_Facture retourné",
+              "source": {
+                "$ref": "58863fc6-039a-44da-9619-298d088f2ee1"
+              },
+              "target": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "812f7b77-927f-4a72-a42d-f7686fc6aa8d",
+              "name": "17: Commande confirmée + Facture",
+              "source": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "target": {
+                "$ref": "d359f330-ed03-45b7-bcf6-56a0d63363b6"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "55b74231-9cd3-4777-bf6b-4c2ac4285c5e",
+              "name": "18: Afficher récapitulatif + Facture",
+              "source": {
+                "$ref": "d359f330-ed03-45b7-bcf6-56a0d63363b6"
+              },
+              "target": {
+                "$ref": "3c81a4de-8da7-4353-b275-5b92c5ff7a2d"
+              },
+              "messageSort": "reply"
+            }
+          ],
+          "ownedViews": [
+            {
+              "_type": "UMLLifelineView",
+              "_id": "c1c32ec7-dedc-4eb6-8d45-7b54b1ef4a1e",
+              "model": {
+                "$ref": "3c81a4de-8da7-4353-b275-5b92c5ff7a2d"
+              },
+              "x": 100,
+              "y": 50,
+              "width": 100,
+              "height": 500
+            },
+            {
+              "_type": "UMLLifelineView",
+              "_id": "1cc36531-d45c-45d3-929c-4963ddb5c756",
+              "model": {
+                "$ref": "d359f330-ed03-45b7-bcf6-56a0d63363b6"
+              },
+              "x": 300,
+              "y": 50,
+              "width": 100,
+              "height": 500
+            },
+            {
+              "_type": "UMLLifelineView",
+              "_id": "ee593621-173e-45fc-9765-85b4621c8373",
+              "model": {
+                "$ref": "03820e27-4429-43c9-a3bb-078a88690e33"
+              },
+              "x": 550,
+              "y": 50,
+              "width": 100,
+              "height": 500
+            },
+            {
+              "_type": "UMLLifelineView",
+              "_id": "31cfca70-57ca-402f-a4f9-08e40027e95e",
+              "model": {
+                "$ref": "58863fc6-039a-44da-9619-298d088f2ee1"
+              },
+              "x": 800,
+              "y": 50,
+              "width": 100,
+              "height": 500
+            }
+          ]
+        },
+        {
+          "_type": "UMLSequenceDiagram",
+          "_id": "f46457d1-8cea-4a7a-bb97-c7118077b61f",
+          "name": "Séquence 2 - Commande avec Livraison",
+          "ownedElements": [
+            {
+              "_type": "UMLLifeline",
+              "_id": "b5d22bd0-6d24-4023-8cda-c55dc0c8cd0d",
+              "name": "Client",
+              "x": 50
+            },
+            {
+              "_type": "UMLLifeline",
+              "_id": "2f915eb4-06ee-4600-8cc3-e1866b6297a6",
+              "name": "Serveur (Interface)",
+              "x": 250
+            },
+            {
+              "_type": "UMLLifeline",
+              "_id": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e",
+              "name": "Django (Backend)",
+              "x": 480
+            },
+            {
+              "_type": "UMLLifeline",
+              "_id": "e1968cc1-1dbd-4bf7-acd6-e3c6ed3dae91",
+              "name": "Base de Données MySQL",
+              "x": 720
+            },
+            {
+              "_type": "UMLLifeline",
+              "_id": "88fd4c86-75b8-43ac-b975-ece9d73adef3",
+              "name": "Chauffeur",
+              "x": 950
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "c067a5c3-1cfa-4c2f-a978-f1e0ce54f99c",
+              "name": "1: Passer commande à livrer",
+              "source": {
+                "$ref": "b5d22bd0-6d24-4023-8cda-c55dc0c8cd0d"
+              },
+              "target": {
+                "$ref": "2f915eb4-06ee-4600-8cc3-e1866b6297a6"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "71ba22ed-c3f1-4206-927e-abb7c910e932",
+              "name": "2: POST /commande {type: 'À livrer', adresse}",
+              "source": {
+                "$ref": "2f915eb4-06ee-4600-8cc3-e1866b6297a6"
+              },
+              "target": {
+                "$ref": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "c51442ee-6bd5-49eb-835a-22d4575e0a02",
+              "name": "3: INSERT INTO Commande (type=À livrer)",
+              "source": {
+                "$ref": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e"
+              },
+              "target": {
+                "$ref": "e1968cc1-1dbd-4bf7-acd6-e3c6ed3dae91"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "b7cbe537-62fb-4da6-8704-7c3c89601636",
+              "name": "4: INSERT INTO Ligne_Commande",
+              "source": {
+                "$ref": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e"
+              },
+              "target": {
+                "$ref": "e1968cc1-1dbd-4bf7-acd6-e3c6ed3dae91"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "cda9a6e9-d86a-47c7-8fc3-211646eb2ef8",
+              "name": "5: UPDATE Stock",
+              "source": {
+                "$ref": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e"
+              },
+              "target": {
+                "$ref": "e1968cc1-1dbd-4bf7-acd6-e3c6ed3dae91"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "40fc7ea5-4f74-4ce5-bf4e-a8129ba7f75f",
+              "name": "6: Confirmation",
+              "source": {
+                "$ref": "e1968cc1-1dbd-4bf7-acd6-e3c6ed3dae91"
+              },
+              "target": {
+                "$ref": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "94fc0ab5-e226-42a4-8568-ff2085fd68a8",
+              "name": "7: INSERT INTO Deplacement (chauffeur, véhicule, destination)",
+              "source": {
+                "$ref": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e"
+              },
+              "target": {
+                "$ref": "e1968cc1-1dbd-4bf7-acd6-e3c6ed3dae91"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "b2195270-f82c-4f84-8198-160fcdc8d918",
+              "name": "8: INSERT INTO Livraison (id_commande, id_deplacement)",
+              "source": {
+                "$ref": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e"
+              },
+              "target": {
+                "$ref": "e1968cc1-1dbd-4bf7-acd6-e3c6ed3dae91"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "f6bd3526-5277-431b-a56c-56494f3b9ddc",
+              "name": "9: Livraison créée",
+              "source": {
+                "$ref": "e1968cc1-1dbd-4bf7-acd6-e3c6ed3dae91"
+              },
+              "target": {
+                "$ref": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "78612151-983f-465c-82df-dce90168730d",
+              "name": "10: Notification livraison assignée",
+              "source": {
+                "$ref": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e"
+              },
+              "target": {
+                "$ref": "88fd4c86-75b8-43ac-b975-ece9d73adef3"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "bcba5c03-7cbd-496e-b720-f18fd8459470",
+              "name": "11: Confirmer prise en charge",
+              "source": {
+                "$ref": "88fd4c86-75b8-43ac-b975-ece9d73adef3"
+              },
+              "target": {
+                "$ref": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "f5a6cf34-51ee-4b46-80eb-fb641e08b915",
+              "name": "12: INSERT INTO Facture",
+              "source": {
+                "$ref": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e"
+              },
+              "target": {
+                "$ref": "e1968cc1-1dbd-4bf7-acd6-e3c6ed3dae91"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "a0c3481d-5b74-4721-924e-a272cfaeecf9",
+              "name": "13: Commande + numéro livraison",
+              "source": {
+                "$ref": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e"
+              },
+              "target": {
+                "$ref": "2f915eb4-06ee-4600-8cc3-e1866b6297a6"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "e8af6f02-7893-4670-86d0-4cf20c21378f",
+              "name": "14: Afficher confirmation livraison",
+              "source": {
+                "$ref": "2f915eb4-06ee-4600-8cc3-e1866b6297a6"
+              },
+              "target": {
+                "$ref": "b5d22bd0-6d24-4023-8cda-c55dc0c8cd0d"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "d829ff79-696c-46ae-8554-b56850d91072",
+              "name": "15: Livraison effectuée",
+              "source": {
+                "$ref": "88fd4c86-75b8-43ac-b975-ece9d73adef3"
+              },
+              "target": {
+                "$ref": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "fcfd6546-ce49-427a-be34-426395f07f68",
+              "name": "16: UPDATE Livraison statut='livrée'",
+              "source": {
+                "$ref": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e"
+              },
+              "target": {
+                "$ref": "e1968cc1-1dbd-4bf7-acd6-e3c6ed3dae91"
+              },
+              "messageSort": "synch"
+            }
+          ],
+          "ownedViews": [
+            {
+              "_type": "UMLLifelineView",
+              "_id": "16dd5cfd-fba7-48f9-bd68-f1115d6cb836",
+              "model": {
+                "$ref": "b5d22bd0-6d24-4023-8cda-c55dc0c8cd0d"
+              },
+              "x": 50,
+              "y": 50,
+              "width": 100,
+              "height": 500
+            },
+            {
+              "_type": "UMLLifelineView",
+              "_id": "555db898-c0fe-4563-a2ff-c11fb5ef8c47",
+              "model": {
+                "$ref": "2f915eb4-06ee-4600-8cc3-e1866b6297a6"
+              },
+              "x": 250,
+              "y": 50,
+              "width": 100,
+              "height": 500
+            },
+            {
+              "_type": "UMLLifelineView",
+              "_id": "7bee5ea3-dbb2-40e7-bc9b-5ca3a743b613",
+              "model": {
+                "$ref": "b68cdd5f-3d71-4fe2-ac5a-dabeb7381e1e"
+              },
+              "x": 480,
+              "y": 50,
+              "width": 100,
+              "height": 500
+            },
+            {
+              "_type": "UMLLifelineView",
+              "_id": "ee33597e-af22-4665-8e00-7ef411166430",
+              "model": {
+                "$ref": "e1968cc1-1dbd-4bf7-acd6-e3c6ed3dae91"
+              },
+              "x": 720,
+              "y": 50,
+              "width": 100,
+              "height": 500
+            },
+            {
+              "_type": "UMLLifelineView",
+              "_id": "bf95aee3-bd61-4881-a535-b4b154e6eee0",
+              "model": {
+                "$ref": "88fd4c86-75b8-43ac-b975-ece9d73adef3"
+              },
+              "x": 950,
+              "y": 50,
+              "width": 100,
+              "height": 500
+            }
+          ]
+        },
+        {
+          "_type": "UMLSequenceDiagram",
+          "_id": "980c2761-cbbe-4a2d-97fb-46e5ac7f8898",
+          "name": "Séquence 3 - Consultation Tableau de Bord",
+          "ownedElements": [
+            {
+              "_type": "UMLLifeline",
+              "_id": "133e8521-9350-4ee8-b924-703f7d2f8e58",
+              "name": "Directeur / Admin",
+              "x": 100
+            },
+            {
+              "_type": "UMLLifeline",
+              "_id": "640a4d53-1f1a-4dfd-8d13-afe34859431e",
+              "name": "Interface Web",
+              "x": 330
+            },
+            {
+              "_type": "UMLLifeline",
+              "_id": "09853caf-8428-4916-bc22-6861530c2462",
+              "name": "Django (Backend)",
+              "x": 580
+            },
+            {
+              "_type": "UMLLifeline",
+              "_id": "ccc6b68b-77cc-423f-bb84-b79ea8b73dbd",
+              "name": "Base de Données MySQL",
+              "x": 830
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "ac202824-680c-4de1-bc7d-6bc29774ecf4",
+              "name": "1: Accéder au tableau de bord",
+              "source": {
+                "$ref": "133e8521-9350-4ee8-b924-703f7d2f8e58"
+              },
+              "target": {
+                "$ref": "640a4d53-1f1a-4dfd-8d13-afe34859431e"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "365439ca-3a0a-459f-8ba4-25d95df5b621",
+              "name": "2: GET /dashboard",
+              "source": {
+                "$ref": "640a4d53-1f1a-4dfd-8d13-afe34859431e"
+              },
+              "target": {
+                "$ref": "09853caf-8428-4916-bc22-6861530c2462"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "2b0bde3c-7f6a-4ffe-b3c0-e4536b964096",
+              "name": "3: Vérifier authentification + rôle",
+              "source": {
+                "$ref": "09853caf-8428-4916-bc22-6861530c2462"
+              },
+              "target": {
+                "$ref": "09853caf-8428-4916-bc22-6861530c2462"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "7778d364-7d73-43f9-91c7-43904db194f3",
+              "name": "4: SELECT SUM(Montant_Total) FROM Commande (mois courant)",
+              "source": {
+                "$ref": "09853caf-8428-4916-bc22-6861530c2462"
+              },
+              "target": {
+                "$ref": "ccc6b68b-77cc-423f-bb84-b79ea8b73dbd"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "e7d57b9f-79b0-42c1-a705-791c523a15e8",
+              "name": "5: Chiffre d'affaires mensuel",
+              "source": {
+                "$ref": "ccc6b68b-77cc-423f-bb84-b79ea8b73dbd"
+              },
+              "target": {
+                "$ref": "09853caf-8428-4916-bc22-6861530c2462"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "b0915958-c6cf-4035-9ffd-43607dbbeaa7",
+              "name": "6: SELECT COUNT(*) FROM Commande",
+              "source": {
+                "$ref": "09853caf-8428-4916-bc22-6861530c2462"
+              },
+              "target": {
+                "$ref": "ccc6b68b-77cc-423f-bb84-b79ea8b73dbd"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "ed37e45a-99b5-46a7-a6c0-cc04e5324b1b",
+              "name": "7: Nombre de commandes",
+              "source": {
+                "$ref": "ccc6b68b-77cc-423f-bb84-b79ea8b73dbd"
+              },
+              "target": {
+                "$ref": "09853caf-8428-4916-bc22-6861530c2462"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "8ba84414-1b81-43d7-ba9a-87f4ddd0e0b2",
+              "name": "8: SELECT Produit, SUM(Quantite) FROM Ligne_Commande GROUP BY Produit",
+              "source": {
+                "$ref": "09853caf-8428-4916-bc22-6861530c2462"
+              },
+              "target": {
+                "$ref": "ccc6b68b-77cc-423f-bb84-b79ea8b73dbd"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "b33206c9-445d-4166-b088-ce336cf9ae57",
+              "name": "9: Produits les plus vendus",
+              "source": {
+                "$ref": "ccc6b68b-77cc-423f-bb84-b79ea8b73dbd"
+              },
+              "target": {
+                "$ref": "09853caf-8428-4916-bc22-6861530c2462"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "b8eab316-3cf1-4b40-b6c5-2687f54e96b3",
+              "name": "10: SELECT SUM(Quantite*Prix_Unitaire) FROM Approvisionnement",
+              "source": {
+                "$ref": "09853caf-8428-4916-bc22-6861530c2462"
+              },
+              "target": {
+                "$ref": "ccc6b68b-77cc-423f-bb84-b79ea8b73dbd"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "18b83db1-39cd-4b74-9ba4-a41cd0504ee7",
+              "name": "11: Dépenses approvisionnement",
+              "source": {
+                "$ref": "ccc6b68b-77cc-423f-bb84-b79ea8b73dbd"
+              },
+              "target": {
+                "$ref": "09853caf-8428-4916-bc22-6861530c2462"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "c4302761-2ee8-4bd9-a8bd-d3a78ca2d39b",
+              "name": "12: SELECT SUM(Salaire) FROM Employe",
+              "source": {
+                "$ref": "09853caf-8428-4916-bc22-6861530c2462"
+              },
+              "target": {
+                "$ref": "ccc6b68b-77cc-423f-bb84-b79ea8b73dbd"
+              },
+              "messageSort": "synch"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "af69e30d-6527-4809-919f-13b02c5d7b5c",
+              "name": "13: Masse salariale",
+              "source": {
+                "$ref": "ccc6b68b-77cc-423f-bb84-b79ea8b73dbd"
+              },
+              "target": {
+                "$ref": "09853caf-8428-4916-bc22-6861530c2462"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "65d7a3d9-baef-4490-938e-e4348aabed39",
+              "name": "14: JSON {CA, commandes, topProduits, dépenses}",
+              "source": {
+                "$ref": "09853caf-8428-4916-bc22-6861530c2462"
+              },
+              "target": {
+                "$ref": "640a4d53-1f1a-4dfd-8d13-afe34859431e"
+              },
+              "messageSort": "reply"
+            },
+            {
+              "_type": "UMLMessage",
+              "_id": "2160d880-b793-4d4a-a662-0963476159ce",
+              "name": "15: Afficher graphiques et indicateurs KPI",
+              "source": {
+                "$ref": "640a4d53-1f1a-4dfd-8d13-afe34859431e"
+              },
+              "target": {
+                "$ref": "133e8521-9350-4ee8-b924-703f7d2f8e58"
+              },
+              "messageSort": "reply"
+            }
+          ],
+          "ownedViews": [
+            {
+              "_type": "UMLLifelineView",
+              "_id": "b658de02-144c-4d84-bdd0-c283e56e363d",
+              "model": {
+                "$ref": "133e8521-9350-4ee8-b924-703f7d2f8e58"
+              },
+              "x": 100,
+              "y": 50,
+              "width": 100,
+              "height": 500
+            },
+            {
+              "_type": "UMLLifelineView",
+              "_id": "04dccebc-d1f1-4704-93a7-8f53845928e6",
+              "model": {
+                "$ref": "640a4d53-1f1a-4dfd-8d13-afe34859431e"
+              },
+              "x": 330,
+              "y": 50,
+              "width": 100,
+              "height": 500
+            },
+            {
+              "_type": "UMLLifelineView",
+              "_id": "822efa5f-026e-447a-8ed9-a03405de04c9",
+              "model": {
+                "$ref": "09853caf-8428-4916-bc22-6861530c2462"
+              },
+              "x": 580,
+              "y": 50,
+              "width": 100,
+              "height": 500
+            },
+            {
+              "_type": "UMLLifelineView",
+              "_id": "4f75e810-dcd8-4b5d-9b04-bdcc8e0d2b4d",
+              "model": {
+                "$ref": "ccc6b68b-77cc-423f-bb84-b79ea8b73dbd"
+              },
+              "x": 830,
+              "y": 50,
+              "width": 100,
+              "height": 500
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
