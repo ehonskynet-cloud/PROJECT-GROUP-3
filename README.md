@@ -6,50 +6,50 @@
 ## ⚙️ Installation & Lancement
 
 ### 1. Cloner le projet et créer l'environnement virtuel
-```bash
+\`\`\`bash
 git clone <votre-repo-github>
 cd restaurant_project
 python -m venv venv
 source venv/bin/activate          # Linux/Mac
 venv\Scripts\activate             # Windows
-```
+\`\`\`
 
 ### 2. Installer les dépendances
-```bash
+\`\`\`bash
 pip install -r requirements.txt
-```
+\`\`\`
 
 ### 3. Configurer la base de données MySQL
 - Ouvrir `restaurant_project/settings.py`
 - Modifier les variables `USER` et `PASSWORD` selon votre config MySQL
 - Importer la base de données SQL fournie :
-```bash
+\`\`\`bash
 mysql -u root -p < Base_Restaurant.sql
-```
+\`\`\`
 
 ### 4. Appliquer les migrations Django
-```bash
+\`\`\`bash
 python manage.py makemigrations
 python manage.py migrate
-```
+\`\`\`
 
 ### 5. Créer un super-utilisateur (Administrateur)
-```bash
+\`\`\`bash
 python manage.py createsuperuser
-```
+\`\`\`
 > Lors de la création, choisissez le rôle `administrateur`
 
 ### 6. Lancer le serveur
-```bash
+\`\`\`bash
 python manage.py runserver
-```
+\`\`\`
 Accéder à : http://127.0.0.1:8000/
 
 ---
 
 ## 🗂️ Structure du projet
 
-```
+\`\`\`
 restaurant_project/
 ├── manage.py
 ├── requirements.txt
@@ -72,7 +72,7 @@ restaurant_project/
             ├── inscription_client.html← Création de compte
             ├── dashboard.html         ← Tableau de bord (admin/employés)
             └── espace_client.html     ← Espace personnel client
-```
+\`\`\`
 
 ---
 
@@ -113,3 +113,11 @@ restaurant_project/
 - ✅ Vérification des rôles à chaque vue (`login_required`)
 - ✅ Protection contre les injections SQL via Django ORM
 - ✅ Séparation stricte des portails Admin / Client
+
+---
+
+## 👥 Contributeurs
+
+| Nom | Rôle |
+|-----|------|
+| Requielleyeinko | Développeuse |
